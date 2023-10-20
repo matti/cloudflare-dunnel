@@ -1,0 +1,5 @@
+{
+  "AccountTag": "${DUNNEL_ACCOUNT}",
+  "TunnelSecret": "${DUNNEL_SECRET}",
+  "TunnelID": "${DUNNEL_ID}"
+}
