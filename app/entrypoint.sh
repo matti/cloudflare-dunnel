@@ -19,6 +19,7 @@ _shutdown() {
 
   kill 0
   wait
+
   exit 0
 }
 
@@ -29,4 +30,9 @@ mkdir -p "$HOME/.cloudflared"
 
 envsubst < /app/tunnel.template.json > "${HOME}/.cloudflared/${DUNNEL_ID}.json"
 
-exec cloudflared tunnel run --url "$DUNNEL_UPSTREAM" "$DUNNEL_ID"
+while true; do
+  cloudflared tunnel run --url "$DUNNEL_UPSTREAM" "$DUNNEL_ID" &
+  wait
+  echo "cloudflared exited!"
+  sleep 0.1
+done
